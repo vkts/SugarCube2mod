@@ -36,7 +36,7 @@ $(document).on(':passagedisplay', function(){
 
     // Show scroll icon
     if(currPassage.tag != TITLE_PASSAGE_TAG){
-        $(".scrollIcon").css("visibility","visible");        
+        $("#scrollIcon").css("visibility","visible");        
     }
     // Hide UIBar when creating a new game state (navigating forward without the use of history)
     if (State.length === State.size && passage() != "Start") {
@@ -47,12 +47,12 @@ $(document).on(':passagedisplay', function(){
     }
 
     // Check if user refreshed the page and old-passages are therefore missing + restore old-passages  
-    if(prevPassage.section == 0){
+    if(prevPassage.section == 0 && currPassage.tag != TITLE_PASSAGE_TAG){
         if (window.sessionStorage.getItem("passageCache") != null) 
             $("#precedingPassages").get(0).innerHTML = window.sessionStorage.getItem("passageCache");
         if (window.sessionStorage.getItem("chapterCache") != null)
             chapterCache = JSON.parse(window.sessionStorage.getItem("chapterCache"));
-        $(".scrollIcon").css("visibility","visible");
+        $("#scrollIcon").css("visibility","visible");
         console.log("refreshed!");
     }
     

@@ -4,10 +4,14 @@
 
         // Add scroll event listener to window object
         window.addEventListener('wheel', scrollEffects);
+        
         // Add containers for previous and temporary(in case of backwards navigation) passages as well as scroll icon 
         $("#story").prepend("<div id='precedingPassages'></div>");
         $("#story").append("<div id='temporaryPassage'></div>");
-        $('#story').append("<div class='scrollIcon'><div class='chevron'></div><div class='chevron'></div><div class='chevron'></div></div>");
+        $('#story').append("<div id='scrollIcon'><div class='chevron'></div><div class='chevron'></div><div class='chevron'></div></div>");
+
+        // Add click event listener to scrollIcon
+        $("#scrollIcon").on('click', sequentialContentReveal);
     
     }).on(':passagedisplay', function(){ // Reccurring layout changes
 

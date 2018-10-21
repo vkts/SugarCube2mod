@@ -5,7 +5,7 @@ function scrollEffects(e){
     if(e.deltaY < 0 
         && currPassage.tag != TITLE_PASSAGE_TAG 
         && $(window).scrollTop() != 0)
-        $(".scrollIcon").css("visibility","visible");
+        $("#scrollIcon").css("visibility","visible");
     // Throttle content reveal animation
     if(((new Date).getTime() - timeStamp) > 1000){
             // Check if scrolling down and at the bottom of the page
@@ -25,7 +25,7 @@ function sequentialContentReveal(){
         function (){
             // Find first hidden paragraph and check whether code has already been executed before
             if($(this).css("opacity") == "0" && visibilityTrigger == true){ 
-                $(".scrollIcon").css("visibility","visible");
+                $("#scrollIcon").css("visibility","visible");
                 $(this).css("max-height",$(this).css("height"));
                 $(this).css("width","0px");
                 $(this).animate({"width":"864px","opacity":"1"},750,"linear");
@@ -36,7 +36,7 @@ function sequentialContentReveal(){
                 countVisibleElements++;
             }
             if($("#passages>.passage").children().length == countVisibleElements && $(window).scrollTop() == $(document).height()-$(window).height())
-                $(".scrollIcon").css("visibility","hidden");
+                $("#scrollIcon").css("visibility","hidden");
         }
     );
 };
