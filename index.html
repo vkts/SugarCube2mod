@@ -177,7 +177,7 @@ html {
 
 
 /* SCROLL ICON */
-.scrollIcon{
+#scrollIcon{
     position: fixed;    
     width: 30px;
     height: 75px;
@@ -185,8 +185,11 @@ html {
     right: 50px;
     visibility: hidden;
 }
-  
-  .chevron {
+#scrollIcon:hover{
+    cursor:pointer;
+} 
+
+.chevron {
     position: absolute;
     width: 2.1rem;
     height: 0.48rem;
@@ -214,7 +217,7 @@ html {
     top: 0;
     height: 100%;
     width: 50%;
-    background:#6e6e6e4b;
+    background: rgba(255,255,255, 0.7);
   }
   
   .chevron:before {
@@ -285,10 +288,14 @@ class PassageDat {
 
         // Add scroll event listener to window object
         window.addEventListener('wheel', scrollEffects);
+        
         // Add containers for previous and temporary(in case of backwards navigation) passages as well as scroll icon 
         $("#story").prepend("<div id='precedingPassages'></div>");
         $("#story").append("<div id='temporaryPassage'></div>");
-        $('#story').append("<div class='scrollIcon'><div class='chevron'></div><div class='chevron'></div><div class='chevron'></div></div>");
+        $('#story').append("<div id='scrollIcon'><div class='chevron'></div><div class='chevron'></div><div class='chevron'></div></div>");
+
+        // Add click event listener to scrollIcon
+        $("#scrollIcon").on('click', sequentialContentReveal);
     
     }).on(':passagedisplay', function(){ // Reccurring layout changes
 
@@ -312,7 +319,7 @@ function scrollEffects(e){
     if(e.deltaY < 0 
         && currPassage.tag != TITLE_PASSAGE_TAG 
         && $(window).scrollTop() != 0)
-        $(".scrollIcon").css("visibility","visible");
+        $("#scrollIcon").css("visibility","visible");
     // Throttle content reveal animation
     if(((new Date).getTime() - timeStamp) > 1000){
             // Check if scrolling down and at the bottom of the page
@@ -332,7 +339,7 @@ function sequentialContentReveal(){
         function (){
             // Find first hidden paragraph and check whether code has already been executed before
             if($(this).css("opacity") == "0" && visibilityTrigger == true){ 
-                $(".scrollIcon").css("visibility","visible");
+                $("#scrollIcon").css("visibility","visible");
                 $(this).css("max-height",$(this).css("height"));
                 $(this).css("width","0px");
                 $(this).animate({"width":"864px","opacity":"1"},750,"linear");
@@ -343,7 +350,7 @@ function sequentialContentReveal(){
                 countVisibleElements++;
             }
             if($("#passages>.passage").children().length == countVisibleElements && $(window).scrollTop() == $(document).height()-$(window).height())
-                $(".scrollIcon").css("visibility","hidden");
+                $("#scrollIcon").css("visibility","hidden");
         }
     );
 };
@@ -394,7 +401,7 @@ $(document).on(':passagedisplay', function(){
 
     // Show scroll icon
     if(currPassage.tag != TITLE_PASSAGE_TAG){
-        $(".scrollIcon").css("visibility","visible");        
+        $("#scrollIcon").css("visibility","visible");        
     }
     // Hide UIBar when creating a new game state (navigating forward without the use of history)
     if (State.length === State.size && passage() != "Start") {
@@ -405,12 +412,12 @@ $(document).on(':passagedisplay', function(){
     }
 
     // Check if user refreshed the page and old-passages are therefore missing + restore old-passages  
-    if(prevPassage.section == 0){
+    if(prevPassage.section == 0 && currPassage.tag != TITLE_PASSAGE_TAG){
         if (window.sessionStorage.getItem("passageCache") != null) 
             $("#precedingPassages").get(0).innerHTML = window.sessionStorage.getItem("passageCache");
         if (window.sessionStorage.getItem("chapterCache") != null)
             chapterCache = JSON.parse(window.sessionStorage.getItem("chapterCache"));
-        $(".scrollIcon").css("visibility","visible");
+        $("#scrollIcon").css("visibility","visible");
         console.log("refreshed!");
     }
     
@@ -457,7 +464,9 @@ $(document).on(':passagedisplay', function(){
 		if(currPassage.section != 1 || State.length != State.size)
 		window.scroll(oldScrollX, oldScrollY);
 	});
-})();</script><tw-passagedata pid="1" name="C1 Passage 1" tags="00101" position="100,100">&lt;&lt;nobr&gt;&gt;
+})();
+/* twine-user-script #6: "tooltips.js" */
+</script><tw-passagedata pid="1" name="C1 Passage 1" tags="00101" position="100,100">&lt;&lt;nobr&gt;&gt;
 /* Story Content */
     &lt;h2  id=&quot;chapterTitle&quot;&gt;Chapter One&lt;/h2&gt;
     &lt;p class=&quot;hasInnerThought&quot;&gt;
