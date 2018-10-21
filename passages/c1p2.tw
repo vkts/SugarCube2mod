@@ -1,0 +1,17 @@
+::C1 Passage 2 [00102]
+<<nobr>>
+    /* Story Content */
+    <p class="quote">
+            -- Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt!<br>
+    </p>
+    <p class="hasInnerThought">
+        <span class="thoughtBox">Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</span>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam sit amet, consetetur sadipscing elitr, sed diam
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+    </p>
+    <p id="choice">
+        <span class="option">[[At vero eos et accusam et ...|C1 Passage 3]]</span>
+    </p>
+<</nobr>>

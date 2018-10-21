@@ -1,0 +1,13 @@
+:: StorySettings 
+ifid:5d10c91b-4d05-4af2-b424-def681149a45
+
+::StoryTitle
+Story Title
+
+::Start [90000]
+<<nobr>>
+<p><span id="test">Story</span> begins
+
+[[here->C1 Passage 1]].
+</p>
+<</nobr>>
